@@ -13,7 +13,18 @@ Refined questions:
   - Is social media indirectly affecting GPA through sleep loss?
 
 Datasets:
-  - 
+  -Social Media And Academic Performance of Students - Nicknamed "Academic"
+  https://www.kaggle.com/datasets/muqniturrehman/social-media-and-academic-performance-of-students
+
+  -Social_Media_Students_Dataset (2025) - Nicknamed "Impact"
+  https://www.kaggle.com/datasets/aminasalamt/social-media-dataset-2025
+
+  -Social Media Addiction Among Students - Nicknamed "Addiction"
+  https://www.kaggle.com/code/adilshamim8/social-media-addiction-among-students
 
 How data will help you answer these questions:
-  -
+  - Gives us data on lots of students with information like GPA, social media usage in hours, sleep hours, age,
+      stress levels, platforms, effect details, etc.
+  - This will allow us to see if there are specific predictors with social media and overall student lifestyle
+      that truly affect the student's GPA
+  - It was also help us to make a prediction on GPA based on their social media usage and other performance indicators
