@@ -1,0 +1,10 @@
+# Performance DataSet
+
+# changing the GPA scale from 10 to 4
+library(dplyr)
+Performance <- Performance |>
+  mutate(GPA = round(GPA * (4/10), 2))
+
+# Converting number strings to numeric for Student ID and Gender columns 
+Performance<- Performance |>
+  mutate(Gender = ifelse(Gender == "Female", 1, 0))
