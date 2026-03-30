@@ -22,6 +22,9 @@ Datasets:
   -Social Media Addiction Among Students - Nicknamed "Addiction"
   https://www.kaggle.com/code/adilshamim8/social-media-addiction-among-students
 
+  -Student Academic Performance Dataset - Nicknamed "Performance"
+  https://www.kaggle.com/datasets/aryancodes12fyds/student-academic-performance-dataset
+
 How data will help you answer these questions:
   - Gives us data on lots of students with information like GPA, social media usage in hours, sleep hours, age,
       stress levels, platforms, effect details, etc.
