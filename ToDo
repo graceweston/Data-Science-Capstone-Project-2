@@ -1,6 +1,15 @@
-1. Convert GPA to 4.0 scale
-2. change number strings to numeric
-3. change in midterm to final exam score
 
-train split 80/20
-cross validate
+
+Cleaning
+1. Convert GPA to 4.0 scale
+2. Change number strings to numeric
+3. Create column of change in midterm to final exam score (whether positive or negative)
+4. Add social media intensity (low <2, medium 2-5, high >5)
+5. 
+
+Analysis
+1. cross validating
+2. checking the validity of predictions and data
+3. making a multiple regression model for prediction
+4. train split 80/20
+
