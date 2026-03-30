@@ -1,6 +1,6 @@
 
 
-Cleaning
+Cleaning for Performance Dataset
 1. Convert GPA to 4.0 scale
 2. Change number strings to numeric
 3. Create column of change in midterm to final exam score (whether positive or negative)
@@ -8,6 +8,9 @@ Cleaning
 5. work life balance -> social media hours/ study hours
 6. label gpa high, medium and low
 7. 
+
+Cleaning for Academic Dataset
+1. 
 
 Analysis
 1. cross validating
