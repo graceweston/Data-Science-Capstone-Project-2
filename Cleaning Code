@@ -15,5 +15,25 @@ Performance$`Student_ID` <- as.numeric(gsub("S", "", unlist(Performance$`Student
 # Add column to see change in midterm and final scores
 Performance$Change_In_Score <- (Performance$Final_Score - Performance$Midterm_Score)
 
-#Reorder
-Performance <- Performance[ , c("Student_ID", "Age", "Gender", "Study_Hours_per_Day", "Sleep_Hours", "Attendance_%", "Assignments_Completed_%", "Midterm_Score", "Final_Score", "Change_In_Score", "Stress_Level_(1-10)", "Social_Media_Hours", "GPA")]
+# Label Social Media Usage Intensity (High, Medium, Low)
+Performance <- Performance |>
+  mutate(Social_Media_Intensity = case_when(
+    Social_Media_Hours < 2 ~ "Low",
+    Social_Media_Hours >= 2 & Social_Media_Hours <= 5 ~ "Medium",
+    Social_Media_Hours > 5 ~ "High"
+  ))
+
+# Label GPA High, Medium, or Low
+Performance <- Performance |>
+  mutate(GPA_Rating = case_when(
+    GPA < 2.5 ~ "Low",
+    GPA >= 2.51 & GPA <= 3.39 ~ "Medium",
+    GPA > 3.4 ~ "High"
+  ))
+
+# Create Column for world life balance ratio
+Performance <- Performance |>
+  mutate(Work_Life = Social_Media_Hours / Study_Hours_per_Day)
+  
+# Reorder
+Performance <- Performance[ , c("Student_ID", "Age", "Gender", "Study_Hours_per_Day", "Sleep_Hours", "Attendance_%", "Assignments_Completed_%", "Midterm_Score", "Final_Score", "Change_In_Score", "Stress_Level_(1-10)", "Social_Media_Hours", "Social_Media_Intensity", "Work_Life", "GPA", "GPA_Rating")]
