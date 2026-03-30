@@ -1,3 +1,6 @@
 1. Convert GPA to 4.0 scale
 2. change number strings to numeric
 3. change in midterm to final exam score
+
+train split 80/20
+cross validate
