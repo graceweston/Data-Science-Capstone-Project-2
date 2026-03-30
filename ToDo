@@ -7,7 +7,7 @@ Cleaning for Performance Dataset
 4. Add social media intensity (low <2, medium 2-5, high >5)
 5. work life balance -> social media hours/ study hours
 6. label gpa high, medium and low
-7. 
+7. make a column to match hours on social media to the column on academic dataset
 
 Cleaning for Academic Dataset
 1. convert str to numerics
