@@ -8,12 +8,15 @@ Cleaning for Performance Dataset
 5. work life balance -> social media hours/ study hours
 6. label gpa high, medium and low
 7. make a column to match hours on social media to the column on academic dataset
+8. same with ages and GPA
+
 
 Cleaning for Academic Dataset
 1. convert str to numerics
 2. make new platform columns to say if they use it each one or not
 3. remove columns that are not needed
-4. 
+4. filter to only look at the ages in the performance dataset
+
 
 Analysis
 1. cross validating
