@@ -5,6 +5,9 @@ library(dplyr)
 Performance <- Performance |>
   mutate(GPA = round(GPA * (4/10), 2))
 
-# Converting number strings to numeric for Student ID and Gender columns 
-Performance<- Performance |>
+# Converting number strings to numeric for Gender column 
+Performance <- Performance |>
   mutate(Gender = ifelse(Gender == "Female", 1, 0))
+
+# Deleting the "S" in Student_ID column so it's numeric
+Performance$`Student_ID` <- as.numeric(gsub("S", "", unlist(Performance$`Student_ID`)))
