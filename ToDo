@@ -12,7 +12,8 @@ Cleaning for Performance Dataset
 Cleaning for Academic Dataset
 1. convert str to numerics
 2. make new platform columns to say if they use it each one or not
-3. 
+3. remove columns that are not needed
+4. 
 
 Analysis
 1. cross validating
