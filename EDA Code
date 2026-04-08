@@ -11,7 +11,7 @@ ggplot(Performance, aes(x = Study_Hours)) +
   geom_histogram(bins = 20)
 
 
-
+#Categorical summaries
 table(Performance$Gender)
 table(Performance$AgeGroup)
 table(Performance$SocialMediaIntensity)
