@@ -1,0 +1,26 @@
+#Checking distributions
+library(ggplot2)
+
+ggplot(data, aes(x = GPA_4)) +
+  geom_histogram(bins = 20)
+
+ggplot(data, aes(x = SocialMediaHours)) +
+  geom_histogram(bins = 20)
+
+ggplot(data, aes(x = StudyHours)) +
+  geom_histogram(bins = 20)
+
+
+
+table(data$Gender)
+table(data$AgeGroup)
+table(data$SocialMediaIntensity)
+
+
+ggplot(data, aes(x = SocialMediaHours, y = GPA_4)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(data, aes(x = StudyHours, y = GPA_4)) +
+  geom_point() +
+  geom_smooth(method = "lm")
