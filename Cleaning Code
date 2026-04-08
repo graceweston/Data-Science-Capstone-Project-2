@@ -33,7 +33,8 @@ Performance <- Performance |>
 
 # Create Column for work life balance ratio
 Performance <- Performance |>
-  mutate(Work_Life = Social_Media_Hours / Study_Hours_per_Day)
+  mutate(Work_Life = round(
+    ifelse(Study_Hours_per_Day == 0, NA, Social_Media_Hours / Study_Hours_per_Day), 2))
   
 # Reorder
 Performance <- Performance[ , c("Student_ID", "Age", "Gender", "Study_Hours_per_Day", "Sleep_Hours", "Attendance_%", "Assignments_Completed_%", "Midterm_Score", "Final_Score", "Change_In_Score", "Stress_Level_(1-10)", "Social_Media_Hours", "Social_Media_Intensity", "Work_Life", "GPA", "GPA_Rating")]
