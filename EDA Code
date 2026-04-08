@@ -12,9 +12,9 @@ ggplot(Performance, aes(x = Study_Hours)) +
 
 
 
-table(data$Gender)
-table(data$AgeGroup)
-table(data$SocialMediaIntensity)
+table(Performance$Gender)
+table(Performance$AgeGroup)
+table(Performance$SocialMediaIntensity)
 
 
 ggplot(data, aes(x = SocialMediaHours, y = GPA_4)) +
