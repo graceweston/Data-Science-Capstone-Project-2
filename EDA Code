@@ -1,14 +1,27 @@
 #Checking distributions
 library(ggplot2)
+dev.off()
 
-ggplot(Performance, aes(x = GPA_4)) +
+#Performance
+ggplot(Performance, aes(x = GPA)) +
   geom_histogram(bins = 20)
 
 ggplot(Performance, aes(x = Social_Media_Hours)) +
   geom_histogram(bins = 20)
 
-ggplot(Performance, aes(x = Study_Hours)) +
+ggplot(Performance, aes(x = Study_Hours_per_Day)) +
   geom_histogram(bins = 20)
+
+ggplot(Performance, aes(x = Sleep_Hours)) +
+  geom_histogram(bins = 20)
+
+#Addiction
+ggplot(Addiction, aes(x = Sleep_Hours)) +
+  geom_histogram(bins = 20)
+
+ggplot(Addiction, aes(x = Social_Media_Hours)) +
+  geom_histogram(bins = 20)
+
 
 
 #Categorical summaries
