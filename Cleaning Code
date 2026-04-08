@@ -42,10 +42,31 @@ Performance <- Performance[ , c("Student_ID", "Age", "Gender", "Study_Hours_per_
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Addiction DataSet 
 
-# Filter countries to only show US
+# Filter countries to only show US and Canada
 Addiction <- Addiction |>
-  filter(Country == "USA")
+  filter(Country %in% c("USA", "Canada"))
 
 # Delete Relationship Status column
 Addiction <- Addiction |>
   select(-"Relationship_Status")
+
+# Converting number strings to numeric for Gender column 
+Addiction <- Addiction |>
+  mutate(Gender = ifelse(Gender == "Female", 1, 0))
+
+# Change column names to match Performance Data Set
+Addiction <- Addiction |>
+  rename(
+    Social_Media_Hours = "Avg_Daily_Usage_Hours",
+    Sleep_Hours = "Sleep_Hours_Per_Night")
+
+# Label Social Media Usage Intensity (High, Medium, Low)
+Addiction <- Addiction |>
+  mutate(Social_Media_Intensity = case_when(
+    Social_Media_Hours < 2 ~ "Low",
+    Social_Media_Hours >= 2 & Social_Media_Hours <= 5 ~ "Medium",
+    Social_Media_Hours > 5 ~ "High"
+  ))
+
+# Reorder
+Addiction <- Addiction[ , c("Student_ID", "Age", "Gender", "Academic_Level", "Country", "Social_Media_Hours", "Social_Media_Intensity", "Most_Used_Platform", "Affects_Academic_Performance", "Sleep_Hours", "Mental_Health_Score", "Conflicts_Over_Social_Media", "Addicted_Score")]
