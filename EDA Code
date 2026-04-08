@@ -23,13 +23,13 @@ ggplot(Addiction, aes(x = Social_Media_Hours)) +
   geom_histogram(bins = 20)
 
 
-
+**************************** where we left off
 #Categorical summaries
 table(Performance$Gender)
 table(Performance$AgeGroup)
 table(Performance$SocialMediaIntensity)
 
-
+#Relationships 
 ggplot(data, aes(x = SocialMediaHours, y = GPA_4)) +
   geom_point() +
   geom_smooth(method = "lm")
