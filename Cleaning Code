@@ -31,7 +31,7 @@ Performance <- Performance |>
     GPA > 3.4 ~ "High"
   ))
 
-# Create Column for world life balance ratio
+# Create Column for work life balance ratio
 Performance <- Performance |>
   mutate(Work_Life = Social_Media_Hours / Study_Hours_per_Day)
   
