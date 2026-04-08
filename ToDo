@@ -5,10 +5,10 @@ Cleaning for Performance Dataset
 2. Change number strings to numeric
 3. Create column of change in midterm to final exam score (whether positive or negative)
 4. Add social media intensity (low <2, medium 2-5, high >5)
-5. work life balance -> social media hours/ study hours (NEED TO FIX CODE TO ROUND CORRECTLY****)
+5. work life balance -> social media hours/ study hours
 6. label gpa high, medium and low
 7. make a column to match hours on social media to the column on academic dataset
-8. same with ages and GPA
+8. same with ages (16-18, 19-21, Over 21)
 
 
 Cleaning for Academic Dataset
