@@ -1,13 +1,13 @@
 #Checking distributions
 library(ggplot2)
 
-ggplot(data, aes(x = GPA_4)) +
+ggplot(Performance, aes(x = GPA_4)) +
   geom_histogram(bins = 20)
 
-ggplot(data, aes(x = SocialMediaHours)) +
+ggplot(Performance, aes(x = Social_Media_Hours)) +
   geom_histogram(bins = 20)
 
-ggplot(data, aes(x = StudyHours)) +
+ggplot(Performance, aes(x = Study_Hours)) +
   geom_histogram(bins = 20)
 
 
