@@ -1,21 +1,20 @@
-
-
 Cleaning for Performance Dataset
 1. Convert GPA to 4.0 scale
 2. Change number strings to numeric
 3. Create column of change in midterm to final exam score (whether positive or negative)
 4. Add social media intensity (low <2, medium 2-5, high >5)
-5. work life balance -> social media hours/ study hours
+5. work life balance -> social media hours/ study hours (NEED TO FIX CODE TO ROUND CORRECTLY****)
 6. label gpa high, medium and low
 7. make a column to match hours on social media to the column on academic dataset
-8. same with ages (16-18, 19-21, Over 21)
+8. same with ages and GPA
 
 
-Cleaning for Academic Dataset
+Cleaning for Addiction Dataset
 1. convert str to numerics
-2. make new platform columns to say if they use it each one or not
+2. Filter to just be the USA
 3. remove columns that are not needed
-4. filter to only look at the ages in the performance dataset
+4. make column names same as Performance dataset (only ones comparing: seen below)
+
 
 
 Analysis
@@ -24,11 +23,10 @@ Analysis
 3. making a multiple regression model for prediction
 4. train split 80/20
 
-Metrics to compare for Performance and Academic
-1.
-2.
-3.
-4.
-5.
+Metrics to compare for Performance and Addicition
+1. Age 
+2. Gender
+3. Hours on Social Media range
+4. Hours of Sleep
 
 
