@@ -15,13 +15,6 @@ ggplot(Performance, aes(x = Study_Hours_per_Day)) +
 ggplot(Performance, aes(x = Sleep_Hours)) +
   geom_histogram(bins = 20)
 
-#Addiction
-ggplot(Addiction, aes(x = Sleep_Hours)) +
-  geom_histogram(bins = 20)
-
-ggplot(Addiction, aes(x = Social_Media_Hours)) +
-  geom_histogram(bins = 20)
-
 # Correlation matrix (numeric variables only)
 cor_matrix <- cor(Performance[, sapply(Performance, is.numeric)], 
                   use = "complete.obs")
@@ -39,7 +32,21 @@ cor.test(Performance$Social_Media_Hours, Performance$GPA)
 gpamod <- lm(GPA ~ ., data = Performance)
 summary(gpamod)
 
+#Categorical summaries
+table(Performance$Gender)
+table(Performance$Age)
+table(Performance$Social_Media_Intensity)
 
+#Relationships 
+ggplot(Performance, aes(x = Social_Media_Hours, y = GPA)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(Performance, aes(x = Study_Hours_per_Day, y = GPA)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+#----------------------------------------------------------------------------
 #Addiction
 ggplot(Addiction, aes(x = Sleep_Hours)) +
   geom_histogram(bins = 20)
@@ -58,18 +65,7 @@ corrplot(cor_matrixAddiction, method = "color", type = "upper",
 cor.test(Addiction$Social_Media_Hours, Addiction$Sleep_Hours)
 cor.test(Addiction$Addicted_Score, Addiction$Mental_Health_Score)
 
-**************************** where we left off
 #Categorical summaries
-table(Performance$Gender)
-table(Performance$AgeGroup)
-table(Performance$SocialMediaIntensity)
-
-#Relationships 
-ggplot(data, aes(x = SocialMediaHours, y = GPA_4)) +
-  geom_point() +
-  geom_smooth(method = "lm")
-
-ggplot(data, aes(x = StudyHours, y = GPA_4)) +
-  geom_point() +
-  geom_smooth(method = "lm")
-
+table(Addiction$Gender)
+table(Addiction$Age)
+table(Addiction$Social_Media_Intensity)
