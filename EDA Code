@@ -22,6 +22,41 @@ ggplot(Addiction, aes(x = Sleep_Hours)) +
 ggplot(Addiction, aes(x = Social_Media_Hours)) +
   geom_histogram(bins = 20)
 
+# Correlation matrix (numeric variables only)
+cor_matrix <- cor(Performance[, sapply(Performance, is.numeric)], 
+                  use = "complete.obs")
+
+# Install if needed
+install.packages("corrplot")
+library(corrplot)
+
+# Heatmap
+corrplot(cor_matrix, method = "color", type = "upper", 
+         tl.col = "black", tl.cex = 0.8)
+
+cor.test(Performance$Social_Media_Hours, Performance$GPA)
+
+gpamod <- lm(GPA ~ ., data = Performance)
+summary(gpamod)
+
+
+#Addiction
+ggplot(Addiction, aes(x = Sleep_Hours)) +
+  geom_histogram(bins = 20)
+
+ggplot(Addiction, aes(x = Social_Media_Hours)) +
+  geom_histogram(bins = 20)
+
+# Correlation matrix (numeric variables only)
+cor_matrixAddiction <- cor(Addiction[, sapply(Addiction, is.numeric)], 
+                  use = "complete.obs")
+
+# Heatmap
+corrplot(cor_matrixAddiction, method = "color", type = "upper", 
+         tl.col = "black", tl.cex = 0.8)
+
+cor.test(Addiction$Social_Media_Hours, Addiction$Sleep_Hours)
+cor.test(Addiction$Addicted_Score, Addiction$Mental_Health_Score)
 
 **************************** where we left off
 #Categorical summaries
@@ -38,21 +73,3 @@ ggplot(data, aes(x = StudyHours, y = GPA_4)) +
   geom_point() +
   geom_smooth(method = "lm")
 
-
-# Correlation matrix (numeric variables only)
-cor_matrix <- cor(Performance[, sapply(Performance, is.numeric)], 
-                  use = "complete.obs")
-
-# Install if needed
-install.packages("corrplot")
-library(corrplot)
-
-# Heatmap
-corrplot(cor_matrix, method = "color", type = "upper", 
-         tl.col = "black", tl.cex = 0.8)
-
-cor.test(Performance$Social_Media_Hours, Performance$GPA)
-
-
-gpamod <- lm(GPA ~ ., data = Performance)
-summary(gpamod)
