@@ -37,3 +37,22 @@ ggplot(data, aes(x = SocialMediaHours, y = GPA_4)) +
 ggplot(data, aes(x = StudyHours, y = GPA_4)) +
   geom_point() +
   geom_smooth(method = "lm")
+
+
+# Correlation matrix (numeric variables only)
+cor_matrix <- cor(Performance[, sapply(Performance, is.numeric)], 
+                  use = "complete.obs")
+
+# Install if needed
+install.packages("corrplot")
+library(corrplot)
+
+# Heatmap
+corrplot(cor_matrix, method = "color", type = "upper", 
+         tl.col = "black", tl.cex = 0.8)
+
+cor.test(Performance$Social_Media_Hours, Performance$GPA)
+
+
+gpamod <- lm(GPA ~ ., data = Performance)
+summary(gpamod)
