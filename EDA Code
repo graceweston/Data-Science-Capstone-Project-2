@@ -46,6 +46,53 @@ ggplot(Performance, aes(x = Study_Hours_per_Day, y = GPA)) +
   geom_point() +
   geom_smooth(method = "lm")
 
+# Run multiple regression
+Perfmod <- lm(GPA ~ Study_Hours_per_Day + Sleep_Hours + Social_Media_Hours +
+              Age + Assignments_Completed_., data = Performance)
+
+# View results
+summary(Perfmod)
+
+plot(Performance$Study_Hours_per_Day, Performance$GPA)
+abline(lm(GPA ~ Study_Hours_per_Day, data = Performance))
+
+plot(Performance$Sleep_Hours, Performance$GPA)
+abline(lm(GPA ~ Sleep_Hours, data = Performance))
+
+plot(Performance$Social_Media_Hours, Performance$GPA)
+abline(lm(GPA ~ Social_Media_Hours, data = Performance))
+
+#forward selection
+fullmod <- lm(GPA ~ Study_Hours_per_Day + Sleep_Hours + Social_Media_Hours + Age + Assignments_Completed_., data = Performance)
+nullmod <- lm(GPA ~ 1, data = Performance) # the 1 = intercept
+summary(nullmod)
+fstepmod <- step(nullmod, direction = "forward", scope = list(lower = nullmod, upper = fullmod))
+summary(fstepmod)
+
+#backward selection
+stepmod <- step(fullmod)
+summary(stepmod)
+
+
+#predicted model on Performance
+# Build regression model
+model2 <- lm(GPA ~ Age + Gender + Social_Media_Hours + Sleep_Hours, data = Performance)
+# View results
+summary(model2)
+
+Performance$Predicted_GPA <- predict(model2)
+
+#test example
+new_student <- data.frame(
+  Age = 20,
+  Gender = 1,
+  Social_Media_Hours = 3,
+  Sleep_Hours = 7
+)
+
+predict(model2, newdata = new_student)
+
+
 #----------------------------------------------------------------------------
 #Addiction
 ggplot(Addiction, aes(x = Sleep_Hours)) +
