@@ -120,3 +120,6 @@ table(Addiction$Social_Media_Intensity)
 
 stratify with sleep times and keep the sleep a constant and then see if social media has an effect
 like the money ball example
+
+model <- lm(GPA ~ Social_Media_Hours + Sleep_Hours, data = Performance)
+summary(model)
