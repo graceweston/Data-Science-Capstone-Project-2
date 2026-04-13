@@ -155,6 +155,47 @@ table(Addiction$Gender)
 table(Addiction$Age)
 table(Addiction$Social_Media_Intensity)
 
+#stat analysis
+add_mod <- lm(Addicted_Score ~ 
+                Age + Gender + Social_Media_Hours + Sleep_Hours + 
+                Mental_Health_Score + Conflicts_Over_Social_Media,
+              data = Addiction)
+
+summary(add_mod)
+
+#backward selection
+
+full_add <- lm(Addicted_Score ~ 
+                 Age + Gender + Social_Media_Hours + Sleep_Hours + 
+                 Mental_Health_Score + Conflicts_Over_Social_Media +
+                 Academic_Level + Country + Social_Media_Intensity +
+                 Most_Used_Platform + Affects_Academic_Performance,
+               data = Addiction,
+               na.action = na.omit)
+backward_mod <- step(full_add, direction = "backward")
+summary(backward_mod)
+
+#best model
+best_add <- lm(Addicted_Score ~ 
+                 Sleep_Hours + 
+                 Mental_Health_Score + 
+                 Conflicts_Over_Social_Media + 
+                 Most_Used_Platform,
+               data = Addiction,
+               na.action = na.omit)
+Addiction$Predicted_Addiction <- predict(best_add, newdata = Addiction)
+new_person <- data.frame(
+  Sleep_Hours = 6,
+  Mental_Health_Score = 5,
+  Conflicts_Over_Social_Media = 3,
+  Most_Used_Platform = "Instagram"
+)
+
+predict(best_add, newdata = new_person)
+
+#predicted best model
+
+
 # ------------------------------------------------------------------------------------------
 # stratify with sleep times and keep the sleep a constant and then see if social media has an effect
 # like the money ball example
