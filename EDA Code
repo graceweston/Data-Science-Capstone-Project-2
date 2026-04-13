@@ -116,3 +116,7 @@ cor.test(Addiction$Addicted_Score, Addiction$Mental_Health_Score)
 table(Addiction$Gender)
 table(Addiction$Age)
 table(Addiction$Social_Media_Intensity)
+
+
+stratify with sleep times and keep the sleep a constant and then see if social media has an effect
+like the money ball example
