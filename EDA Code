@@ -93,6 +93,44 @@ new_student <- data.frame(
 
 predict(model2, newdata = new_student)
 
+Performance$Predicted_GPA <- predict(stepmod)
+
+#test example
+new_student <- data.frame(
+  Age = 20,
+  Gender = 1,
+  Social_Media_Hours = 3,
+  Sleep_Hours = 7
+)
+
+predict(model2, newdata = new_student)
+
+#interactions model
+Performance$Study_Final <- Performance$Study_Hours_per_Day * Performance$Final_Score
+Performance$Attend_Final <- Performance$Attendance_. * Performance$Final_Score
+Performance$Study_Stress <- Performance$Study_Hours_per_Day * Performance$Stress_Level_.1.10.
+Performance$Study_Social <- Performance$Study_Hours_per_Day * Performance$Social_Media_Hours
+
+intmod_manual <- lm(GPA ~ Study_Hours_per_Day + Final_Score + Attendance_. + Stress_Level_.1.10. + Social_Media_Hours + Midterm_Score + Study_Final + Attend_Final + Study_Stress + Study_Social, data = Performance)
+summary(intmod)
+
+bestmod <- lm(GPA ~ Midterm_Score + Final_Score + Attendance_. + Study_Hours_per_Day + Final_Score:Attendance_., data = Performance)
+summary(bestmod)
+
+#bestmod prediction
+Performance$Predicted_GPA <- predict(bestmod, newdata = Performance)
+Performance$Predicted_GPA_4scale <- (Performance$Predicted_GPA / 10) * 4
+new_student <- data.frame(
+  Midterm_Score = 85,
+  Final_Score = 90,
+  Attendance_. = 95,
+  Study_Hours_per_Day = 4
+)
+predict(bestmod, newdata = new_student) * 0.4
+
+
+
+
 #----------------------------------------------------------------------------
 #Addiction
 ggplot(Addiction, aes(x = Sleep_Hours)) +
