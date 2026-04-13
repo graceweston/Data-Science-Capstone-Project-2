@@ -123,3 +123,23 @@ like the money ball example
 
 model <- lm(GPA ~ Social_Media_Hours + Sleep_Hours, data = Performance)
 summary(model)
+OR
+library(dplyr)
+
+Performance <- Performance %>%
+  mutate(SleepGroup = case_when(
+    Sleep_Hours < 6 ~ "Low",
+    Sleep_Hours >= 6 & Sleep_Hours <= 8 ~ "Medium",
+    Sleep_Hours > 8 ~ "High"
+  ))
+library(ggplot2)
+
+ggplot(Performance, aes(x = Social_Media_Hours, y = GPA)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  facet_wrap(~SleepGroup)
+
+Performance %>%
+  group_by(SleepGroup) %>%
+  do(model = lm(GPA ~ Social_Media_Hours, data = .)) %>%
+  summarise(model = list(summary(model)))
