@@ -67,9 +67,6 @@ fullmod <- lm(GPA ~ ., data = Performance)
 nullmod <- lm(GPA ~ 1, data = Performance) # the 1 = intercept
 summary(nullmod)
 
-fstepmod <- step(nullmod, direction = "forward", scope = list(lower = nullmod, upper = fullmod))
-summary(fstepmod)
-
 #backward selection
 stepmod <- step(fullmod)
 summary(stepmod)
