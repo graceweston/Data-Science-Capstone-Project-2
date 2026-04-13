@@ -36,13 +36,14 @@ Performance <- Performance |>
   mutate(Work_Life = round(
     ifelse(Study_Hours_per_Day == 0, NA, Social_Media_Hours / Study_Hours_per_Day), 2))
 
-# Change name of Attendance_% column name
+# Change name of Attendance_% and Assignments_Completed_% column names
 Performance <- Performance |>
   rename(
-    Attendance = "Attendance_%")
+    Attendance = "Attendance_%",
+    Assignments_Completed = "Assignments_Completed_%")
   
 # Reorder
-Performance <- Performance[ , c("Student_ID", "Age", "Gender", "Study_Hours_per_Day", "Sleep_Hours", "Attendance", "Assignments_Completed_%", "Midterm_Score", "Final_Score", "Change_In_Score", "Stress_Level_(1-10)", "Social_Media_Hours", "Social_Media_Intensity", "Work_Life", "GPA", "GPA_Rating")]
+Performance <- Performance[ , c("Student_ID", "Age", "Gender", "Study_Hours_per_Day", "Sleep_Hours", "Attendance", "Assignments_Completed", "Midterm_Score", "Final_Score", "Change_In_Score", "Stress_Level_(1-10)", "Social_Media_Hours", "Social_Media_Intensity", "Work_Life", "GPA", "GPA_Rating")]
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Addiction DataSet 
