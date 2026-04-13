@@ -48,7 +48,7 @@ ggplot(Performance, aes(x = Study_Hours_per_Day, y = GPA)) +
 
 # Run multiple regression
 Perfmod <- lm(GPA ~ Study_Hours_per_Day + Sleep_Hours + Social_Media_Hours +
-              Age + Assignments_Completed_., data = Performance)
+                Age + Assignments_Completed, data = Performance)
 
 # View results
 summary(Perfmod)
@@ -66,6 +66,7 @@ abline(lm(GPA ~ Social_Media_Hours, data = Performance))
 fullmod <- lm(GPA ~ ., data = Performance)
 nullmod <- lm(GPA ~ 1, data = Performance) # the 1 = intercept
 summary(nullmod)
+
 fstepmod <- step(nullmod, direction = "forward", scope = list(lower = nullmod, upper = fullmod))
 summary(fstepmod)
 
@@ -76,7 +77,7 @@ summary(stepmod)
 
 #predicted model on Performance
 # Build regression model
-model2 <- lm(GPA ~ Age + Gender + Social_Media_Hours + Sleep_Hours, data = Performance)
+model2 <- lm(GPA ~ Age + Gender + Social_Media_Hours + Sleep_Hours + Attendance + Assignments_Completed + Midterm_Score, data = Performance)
 # View results
 summary(model2)
 
@@ -85,13 +86,15 @@ Performance$Predicted_GPA <- predict(model2)
 #test example
 new_student <- data.frame(
   Age = 20,
-  Gender = 1,
-  Social_Media_Hours = 3,
-  Sleep_Hours = 7
+  Gender = 0,
+  Social_Media_Hours = 2,
+  Sleep_Hours = 9,
+  Attendance = 100,
+  Assignments_Completed = 100,
+  Midterm_Score = 96
 )
 
 predict(model2, newdata = new_student)
-
 
 #----------------------------------------------------------------------------
 #Addiction
@@ -116,7 +119,6 @@ cor.test(Addiction$Addicted_Score, Addiction$Mental_Health_Score)
 table(Addiction$Gender)
 table(Addiction$Age)
 table(Addiction$Social_Media_Intensity)
-
 
 stratify with sleep times and keep the sleep a constant and then see if social media has an effect
 like the money ball example
