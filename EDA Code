@@ -70,7 +70,7 @@ summary(nullmod)
 #backward selection
 stepmod <- step(fullmod)
 summary(stepmod)
-
+plot(stepmod)
 
 #predicted model on Performance
 # Build regression model
@@ -130,6 +130,16 @@ predict(bestmod, newdata = new_student) * 0.4
 
 plot(Performance$GPA, Performance$Predicted_GPA)
 abline(0, 1, col= "red")
+
+#Interactions 
+interaction_model <- lm(GPA ~ Study_Hours_per_Day*Social_Media_Hours + Sleep_Hours * Social_Media_Hours,
+                        data = Performance)
+summary(interaction_model)
+
+#Box plots
+ggplot(Performance, aes(x = Social_Media_Intensity, y = GPA)) + geom_boxplot()
+
+ggplot(Performance, aes(x = factor(Gender), y = GPA)) + geom_boxplot()
 
 #----------------------------------------------------------------------------
 #Addiction
