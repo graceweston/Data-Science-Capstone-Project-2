@@ -39,9 +39,20 @@ next steps for performance:
        - study hours vs GPA
   Boxplots
        - GPA by social media intensity
+          ggplot(Performance, aes(x = Social_Media_Intensity, y = GPA)) +
+              geom_boxplot()
        - GPA by gender
   Residual plot
        - plot(stepmod, which = 1)
+
+Performance$Predicted_GPA <- predict(stepmod)
+ggplot(Performance, aes(x = GPA, y = Predicted_GPA)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0, color = "red") +
+  labs(title = "Actual vs Predicted GPA")
+
+
+corrplot(cor_matrix, method = "color")
 
 next steps for addiciton:
 1. find best varibales for addiciton
