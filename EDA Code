@@ -204,6 +204,61 @@ new_person <- data.frame(
 predict(best_add, newdata = new_person)
 
 #predicted best model
+coef(best_add)
+Addiction$Predicted_Addiction <- predict(best_add, newdata = Addiction)
+
+#full interactions model
+Addiction_clean <- Addiction |>
+  select(-Student_ID, -Predicted, -Predicted_Addiction)
+
+interaction_clean <- lm(Addicted_Score ~ 
+                          (Sleep_Hours + Mental_Health_Score + 
+                             Conflicts_Over_Social_Media + 
+                             Most_Used_Platform + Age + Gender)^2,
+                        data = Addiction_clean,
+                        na.action = na.omit)
+
+summary(interaction_clean)
+
+coefs <- summary(interaction_clean)$coefficients
+interaction_terms <- coefs[grep(":", rownames(coefs)), ]
+interaction_terms[interaction_terms[,4] < 0.05, ]
+
+
+# interactions model
+interaction_mod <- lm(Addicted_Score ~ 
+                        Sleep_Hours * Mental_Health_Score +
+                        Conflicts_Over_Social_Media * Mental_Health_Score +
+                        Sleep_Hours * Most_Used_Platform,
+                      data = Addiction,
+                      na.action = na.omit)
+
+summary(interaction_mod)
+anova(best_add, interaction_mod)
+
+#final predicted model
+final_pred_mod <- lm(Addicted_Score ~ 
+                       Sleep_Hours + 
+                       Mental_Health_Score + 
+                       Conflicts_Over_Social_Media + 
+                       Most_Used_Platform +
+                       Age + Gender +
+                       Sleep_Hours:Age,
+                     data = Addiction_clean,
+                     na.action = na.omit)
+
+summary(final_pred_mod)
+
+#testing prediction
+Addiction$Predicted <- predict(final_mod, newdata = Addiction)
+
+# Compare visually
+plot(Addiction$Addicted_Score, Addiction$Predicted,
+     xlab = "Actual", ylab = "Predicted")
+abline(0, 1, col = "red")
+
+plot(final_mod)
+
 
 
 # ------------------------------------------------------------------------------------------
