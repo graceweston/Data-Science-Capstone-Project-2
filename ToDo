@@ -34,6 +34,14 @@ next steps for performance:
 1. making a prediction model for Perfromance data based on best varibales 
 2. do some interaction variables (might already be in code) to find new variables that can be included in final model
 3. find plots for performance that show evidence of siginificance (for final analysis)
+  Scatter and regression
+       - social media vs GPA
+       - study hours vs GPA
+  Boxplots
+       - GPA by social media intensity
+       - GPA by gender
+  Residual plot
+       - plot(stepmod, which = 1)
 
 next steps for addiciton:
 1. find best varibales for addiciton
