@@ -42,6 +42,10 @@ next steps for performance:
        - GPA by gender
   Residual plot
        - plot(stepmod, which = 1)
+4. stratify the population, break out in bins, then do regressions with that
+      - study times 
+      - sleep times
+      - is there a specific combination of those that show anything
 
 next steps for addiciton:
 1. find best varibales for addiciton
