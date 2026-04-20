@@ -128,8 +128,8 @@ new_student <- data.frame(
 )
 predict(bestmod, newdata = new_student) * 0.4
 
-
-
+plot(Performance$GPA, Performance$Predicted_GPA)
+abline(0, 1, col= "red")
 
 #----------------------------------------------------------------------------
 #Addiction
