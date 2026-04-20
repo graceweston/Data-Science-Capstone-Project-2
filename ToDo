@@ -30,6 +30,11 @@ Metrics to compare for Performance and Addicition
 4. Hours of Sleep
 
 
-TO DO
--
+next steps for performance:
+1. making a prediction model for Perfromance data based on best varibales 
+2. do some interaction variables (might already be in code) to find new variables that can be included in final model
+3. find plots for performance that show evidence of siginificance (for final analysis)
 
+next steps for addiciton:
+1. find best varibales for addiciton
+2. make prediction model for addicition
