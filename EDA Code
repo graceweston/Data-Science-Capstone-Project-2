@@ -141,6 +141,45 @@ ggplot(Performance, aes(x = Social_Media_Intensity, y = GPA)) + geom_boxplot()
 
 ggplot(Performance, aes(x = factor(Gender), y = GPA)) + geom_boxplot()
 
+# stratify with sleep times and keep the sleep a constant and then see if social media has an effect
+# like the money ball example
+
+ggplot(Performance, aes(x = Social_Media_Hours, y = GPA)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  facet_wrap(~SleepGroup)
+
+model <- lm(GPA ~ Social_Media_Hours + Sleep_Hours, data = Performance)
+summary(model)
+
+by_sleep <- Performance %>%
+  group_by(SleepGroup) %>%
+  do(model = lm(GPA ~ Social_Media_Hours + Study_Hours_per_Day, data = .))
+
+# Summaries
+lapply(by_sleep$model, summary)
+
+by_study <- Performance %>%
+  group_by(StudyHoursGroup) %>%
+  do(model = lm(GPA ~ Social_Media_Hours + Sleep_Hours, data = .))
+
+lapply(by_study$model, summary)
+
+library(ggplot2)
+
+ggplot(Performance, aes(x = Social_Media_Hours, y = GPA)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~SleepGroup) +
+  labs(title = "Social Media vs GPA by Sleep Group")
+
+ggplot(Performance, aes(x = Social_Media_Hours, y = GPA)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~StudyHoursGroup) +
+  labs(title = "Social Media vs GPA by Study Group")
+
+
 #----------------------------------------------------------------------------
 #Addiction
 ggplot(Addiction, aes(x = Sleep_Hours)) +
@@ -258,44 +297,3 @@ plot(Addiction$Addicted_Score, Addiction$Predicted,
 abline(0, 1, col = "red")
 
 plot(final_mod)
-
-
-
-# ------------------------------------------------------------------------------------------
-# stratify with sleep times and keep the sleep a constant and then see if social media has an effect
-# like the money ball example
-
-ggplot(Performance, aes(x = Social_Media_Hours, y = GPA)) +
-  geom_point() +
-  geom_smooth(method = "lm") +
-  facet_wrap(~SleepGroup)
-
-model <- lm(GPA ~ Social_Media_Hours + Sleep_Hours, data = Performance)
-summary(model)
-
-by_sleep <- Performance %>%
-  group_by(SleepGroup) %>%
-  do(model = lm(GPA ~ Social_Media_Hours + Study_Hours_per_Day, data = .))
-
-# Summaries
-lapply(by_sleep$model, summary)
-
-by_study <- Performance %>%
-  group_by(StudyGroup) %>%
-  do(model = lm(GPA ~ Social_Media_Hours + Sleep_Hours, data = .))
-
-lapply(by_study$model, summary)
-
-library(ggplot2)
-
-ggplot(Performance, aes(x = Social_Media_Hours, y = GPA)) +
-  geom_point(alpha = 0.6) +
-  geom_smooth(method = "lm") +
-  facet_wrap(~SleepGroup) +
-  labs(title = "Social Media vs GPA by Sleep Group")
-
-ggplot(Performance, aes(x = Social_Media_Hours, y = GPA)) +
-  geom_point(alpha = 0.6) +
-  geom_smooth(method = "lm") +
-  facet_wrap(~StudyGroup) +
-  labs(title = "Social Media vs GPA by Study Group")
