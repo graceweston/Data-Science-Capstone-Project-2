@@ -15,12 +15,14 @@ Performance$`Student_ID` <- as.numeric(gsub("S", "", unlist(Performance$`Student
 # Add column to see change in midterm and final scores
 Performance$Change_In_Score <- (Performance$Final_Score - Performance$Midterm_Score)
 
+social_thirds <- quantile(Performance$Social_Media_Hours, probs = c(0.33, 0.66))
+
 # Label Social Media Usage Intensity (High, Medium, Low)
 Performance <- Performance |>
   mutate(Social_Media_Intensity = case_when(
-    Social_Media_Hours < 2 ~ "Low",
-    Social_Media_Hours >= 2 & Social_Media_Hours <= 5 ~ "Medium",
-    Social_Media_Hours > 5 ~ "High"
+    Social_Media_Hours < social_thirds[1] ~ "Low",
+    Social_Media_Hours >= social_thirds[1] & Social_Media_Hours <= social_thirds[2] ~ "Medium",
+    Social_Media_Hours > social_thirds[2] ~ "High"
   ))
 
 # Label GPA High, Medium, or Low
