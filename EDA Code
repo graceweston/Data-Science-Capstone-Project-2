@@ -297,3 +297,89 @@ plot(Addiction$Addicted_Score, Addiction$Predicted,
 abline(0, 1, col = "red")
 
 plot(final_mod)
+
+#bins by platform
+# Split data by platform
+models <- by(Addiction_clean, Addiction_clean$Most_Used_Platform, function(df) {
+  lm(Addicted_Score ~ Sleep_Hours + Mental_Health_Score + 
+       Conflicts_Over_Social_Media + Age + Gender, data = df)
+})
+
+# View summaries
+lapply(models, summary)
+
+model1 <- lm(Addicted_Score ~ Sleep_Hours + Mental_Health_Score + 
+               Conflicts_Over_Social_Media + Age + Gender, data = Addiction_clean)
+
+model2 <- lm(Addicted_Score ~ Sleep_Hours + Mental_Health_Score + 
+               Conflicts_Over_Social_Media + Age + Gender + Most_Used_Platform, 
+             data = Addiction_clean)
+
+anova(model1, model2)
+
+model2 <- lm(Addicted_Score ~ Sleep_Hours + Mental_Health_Score + 
+               Conflicts_Over_Social_Media + Age + Gender + Most_Used_Platform, 
+             data = Addiction_clean)
+
+summary(model2)
+
+model_int <- lm(Addicted_Score ~ (Sleep_Hours + Mental_Health_Score + 
+                                    Conflicts_Over_Social_Media + Age + Gender) * Most_Used_Platform, 
+                data = Addiction_clean)
+
+summary(model_int)
+
+
+library(ggplot2)
+
+ggplot(Addiction_clean, 
+       aes(x = Mental_Health_Score, y = Addicted_Score, color = Most_Used_Platform)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_minimal() +
+  labs(title = "Effect of Mental Health on Addiction by Platform",
+       x = "Mental Health Score",
+       y = "Addiction Score")
+
+ggplot(Addiction_clean, 
+       aes(x = Conflicts_Over_Social_Media, y = Addicted_Score, color = Most_Used_Platform)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_minimal() +
+  labs(title = "Effect of Social Media Conflicts on Addiction by Platform",
+       x = "Conflicts Over Social Media",
+       y = "Addiction Score")
+
+library(ggplot2)
+
+ggplot(Addiction_clean, 
+       aes(x = Age, y = Addicted_Score, color = Most_Used_Platform)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_minimal() +
+  labs(title = "Effect of Age on Addiction by Platform",
+       x = "Age",
+       y = "Addiction Score")
+
+library(ggplot2)
+
+ggplot(Addiction_clean, aes(x = Most_Used_Platform, y = Addicted_Score)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(title = "Addiction Score by Most Used Platform",
+       x = "Platform",
+       y = "Addiction Score")
+
+ggplot(Addiction_clean, aes(x = Most_Used_Platform, y = Addicted_Score, color = Most_Used_Platform)) +
+  stat_summary(fun = mean, geom = "bar") +
+  theme_minimal() +
+  labs(title = "Average Addiction Score by Platform")
+
+ggplot(Addiction_clean, 
+       aes(x = Mental_Health_Score, y = Addicted_Score)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_minimal() +
+  labs(title = "Mental Health vs Addiction by Platform",
+       x = "Mental Health Score",
+       y = "Addiction Score")
