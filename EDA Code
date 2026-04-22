@@ -285,3 +285,17 @@ by_study <- Performance %>%
   do(model = lm(GPA ~ Social_Media_Hours + Sleep_Hours, data = .))
 
 lapply(by_study$model, summary)
+
+library(ggplot2)
+
+ggplot(Performance, aes(x = Social_Media_Hours, y = GPA)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~SleepGroup) +
+  labs(title = "Social Media vs GPA by Sleep Group")
+
+ggplot(Performance, aes(x = Social_Media_Hours, y = GPA)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~StudyGroup) +
+  labs(title = "Social Media vs GPA by Study Group")
