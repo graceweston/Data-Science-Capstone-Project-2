@@ -25,12 +25,14 @@ Performance <- Performance |>
     Social_Media_Hours > social_thirds[2] ~ "High"
   ))
 
+GPA_thirds <- quantile(Performance$GPA, probs = c(0.33, 0.66))
+
 # Label GPA High, Medium, or Low
 Performance <- Performance |>
   mutate(GPA_Rating = case_when(
-    GPA < 2.5 ~ "Low",
-    GPA >= 2.51 & GPA <= 3.39 ~ "Medium",
-    GPA > 3.4 ~ "High"
+    GPA < GPA_thirds[1] ~ "Low",
+    GPA >= GPA_thirds[1] & GPA <= GPA_thirds[2] ~ "Medium",
+    GPA > GPA_thirds[2] ~ "High"
   ))
 
 sleep_thirds = quantile(Performance$Sleep_Hours, probs = c(0.33,0.66))
