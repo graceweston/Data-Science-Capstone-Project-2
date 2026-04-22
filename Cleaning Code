@@ -31,20 +31,24 @@ Performance <- Performance |>
     GPA > 3.4 ~ "High"
   ))
 
+sleep_thirds = quantile(Performance$Sleep_Hours, probs = c(0.33,0.66))
+
 # Label Sleep as High, Medium, or Low
 Performance <- Performance |>
   mutate(SleepGroup = case_when(
-    Sleep_Hours < 6 ~ "Low",
-    Sleep_Hours >= 6 & Sleep_Hours <= 8 ~ "Medium",
-    Sleep_Hours > 8 ~ "High"
+    Sleep_Hours < sleep_thirds[1] ~ "Low",
+    Sleep_Hours >= sleep_thirds[1] & Sleep_Hours <= sleep_thirds[2]~ "Medium",
+    Sleep_Hours > sleep_thirds[2] ~ "High"
   ))
+
+study_thirds = quantile(Performance$Study_Hours_per_Day, probs = c(0.33,0.66))
 
 # Label Study Hours as High, Medium, or Low
 Performance <- Performance |>
   mutate(StudyHoursGroup = case_when(
-    Study_Hours_per_Day < 2 ~ "Low",
-    Study_Hours_per_Day >= 2 & Study_Hours_per_Day <= 5 ~ "Medium",
-    Study_Hours_per_Day > 5 ~ "High"
+    Study_Hours_per_Day < study_thirds[1] ~ "Low",
+    Study_Hours_per_Day >= study_thirds[1] & Study_Hours_per_Day <= study_thirds[2] ~ "Medium",
+    Study_Hours_per_Day > study_thirds[2] ~ "High"
   ))
 
 # Create Column for work life balance ratio
