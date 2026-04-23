@@ -90,12 +90,13 @@ Addiction <- Addiction |>
     Social_Media_Hours = "Avg_Daily_Usage_Hours",
     Sleep_Hours = "Sleep_Hours_Per_Night")
 
+social_thirdsAdd <- quantile(Addiction$Social_Media_Hours, probs = c(0.33, 0.66))
 # Label Social Media Usage Intensity (High, Medium, Low)
-Addiction <- Addiction |>
+Performance <- Performance |>
   mutate(Social_Media_Intensity = case_when(
-    Social_Media_Hours < 2 ~ "Low",
-    Social_Media_Hours >= 2 & Social_Media_Hours <= 5 ~ "Medium",
-    Social_Media_Hours > 5 ~ "High"
+    Social_Media_Hours < social_thirdsAdd[1] ~ "Low",
+    Social_Media_Hours >= social_thirdsAdd[1] & Social_Media_Hours <= social_thirdsAdd[2] ~ "Medium",
+    Social_Media_Hours > social_thirdsAdd[2] ~ "High"
   ))
 
 # Reorder
