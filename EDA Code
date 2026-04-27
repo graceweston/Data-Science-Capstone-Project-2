@@ -383,3 +383,21 @@ ggplot(Addiction_clean,
   labs(title = "Mental Health vs Addiction by Platform",
        x = "Mental Health Score",
        y = "Addiction Score")
+
+# ACTUAL vs PREDICTED PLOT (clean + presentation-ready)
+ggplot(Addiction_clean, aes(x = Addiction$Predicted_Addiction, y = Addiction$Addicted_Score)) +
+  
+  geom_point(alpha = 0.6, color = "blue", size = 2) +
+  
+  # Perfect prediction line
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed", linewidth = 1) +
+  
+  # Optional smooth to show fit
+  geom_smooth(method = "lm", se = FALSE, color = "orange", linewidth = 1) +
+  
+  theme_minimal(base_size = 14) +
+  
+  labs(title = "Actual vs Predicted Addiction Scores",
+       subtitle = "Closer to the dashed line = better model fit",
+       x = "Predicted Addiction Score",
+       y = "Actual Addiction Score")
